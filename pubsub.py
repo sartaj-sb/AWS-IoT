@@ -136,7 +136,7 @@ if __name__ == '__main__':
             data = {
                 "temperature":random.randint(0,130),
                 "humidity":random.randint(0,100),
-                "timestamps":int(time.Time())
+                "timestamps":int(time.time())
             }
             message = "{} [{}]".format(message_string, publish_count)
             print("Publishing message to topic '{}': {}".format("iot/rpi", message))

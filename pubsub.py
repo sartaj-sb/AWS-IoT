@@ -132,9 +132,14 @@ if __name__ == '__main__':
 
         publish_count = 1
         while (publish_count <= message_count) or (message_count == 0):
+            data = {
+                "temperature":random.randint(0,130),
+                "humidity":random.randint(0,100),
+                "timestamps":int(time.Time())
+            }
             message = "{} [{}]".format(message_string, publish_count)
-            print("Publishing message to topic '{}': {}".format(message_topic, message))
-            message_json = json.dumps(message)
+            print("Publishing message to topic '{}': {}".format("iot/rpi", message))
+            message_json = json.dumps(data)
             mqtt_connection.publish(
                 topic=message_topic,
                 payload=message_json,

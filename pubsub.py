@@ -7,6 +7,7 @@ import sys
 import threading
 import time
 import json
+import random
 from utils.command_line_utils import CommandLineUtils
 
 # This sample uses the Message Broker for AWS IoT to send and receive messages

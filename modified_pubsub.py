@@ -108,7 +108,8 @@ if __name__ == '__main__':
     connect_future.result()
     print("Connected!")
 
-    message_count = cmdData.input_count
+    message_count = 0
+    #cmdData.input_count
     message_topic = cmdData.input_topic
     message_string = cmdData.input_message
 
@@ -134,15 +135,16 @@ if __name__ == '__main__':
         publish_count = 1
         while (publish_count <= message_count) or (message_count == 0):
             data = {
-                "temperature":random.randint(0,130),
-                "humidity":random.randint(0,100),
-                "timestamps":int(time.time())
-            }
+                "temperature": random.randint(0, 130),
+                "humidity": random.randint(0, 100),
+                "timestamps": int(time.time())
+                }
+
             message = "{} [{}]".format(message_string, publish_count)
-            print("Publishing message to topic '{}': {}".format("iot/rpi", message))
+            print("Publishing message to topic '{}': {}".format("iot/rpi", data))
             message_json = json.dumps(data)
             mqtt_connection.publish(
-                topic=message_topic,
+                topic="iot/rpi",
                 payload=message_json,
                 qos=mqtt.QoS.AT_LEAST_ONCE)
             time.sleep(1)
